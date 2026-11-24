@@ -1,0 +1,42 @@
+{
+  "mae_log_ppm": 0.045942,
+  "r2_log_ppm": 0.993508,
+  "mae_ppm": 53.7308,
+  "n_treino": 42500,
+  "n_validacao": 7500,
+  "tipo_dados": "pseudo_calibracao",
+  "iteracoes": 80,
+  "r2_mq135": 0.9941,
+  "r2_mq131": 0.9919,
+  "r2_mq2": 0.993,
+  "r2_mq7": 0.9975,
+  "r2_mq136": 0.9886,
+  "r2_mq137": 0.9959,
+  "features": [
+    "ratio_mq135",
+    "ratio_mq131",
+    "ratio_mq2",
+    "ratio_mq7",
+    "ratio_mq136",
+    "ratio_mq137",
+    "temp",
+    "umidade",
+    "pressao"
+  ],
+  "targets": [
+    "ppm_mq135",
+    "ppm_mq131",
+    "ppm_mq2",
+    "ppm_mq7",
+    "ppm_mq136",
+    "ppm_mq137"
+  ],
+  "sensores": [
+    "mq135",
+    "mq131",
+    "mq2",
+    "mq7",
+    "mq136",
+    "mq137"
+  ]
+}

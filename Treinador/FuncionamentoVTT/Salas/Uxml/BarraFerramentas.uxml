@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+    <!-- Container principal da toolbar -->
+    <ui:VisualElement class="map-toolbar">
+
+        <!-- Botão de Expandir/Colapsar -->
+        <ui:Button class="toolbar-button expand-collapse-btn" tooltip="Expandir/Colapsar">
+            <ui:Label text="⟨" class="toolbar-icon"/>
+        </ui:Button>
+
+        <!-- Separador -->
+        <ui:VisualElement class="toolbar-separator"/>
+
+        <!-- Botão Chat -->
+        <ui:Button class="toolbar-button chat-btn" tooltip="Chat">
+            <ui:Label text="💬" class="toolbar-icon"/>
+        </ui:Button>
+
+        <!-- Botão Ferramenta (Mão) -->
+        <ui:Button class="toolbar-button tool-btn" tooltip="Ferramenta">
+            <ui:Label text="✋" class="toolbar-icon"/>
+        </ui:Button>
+
+        <!-- Botão Dado -->
+        <ui:Button class="toolbar-button dice-btn" tooltip="Dado">
+            <ui:Label text="🎲" class="toolbar-icon"/>
+        </ui:Button>
+
+        <!-- Botão Régua -->
+        <ui:Button class="toolbar-button ruler-btn" tooltip="Régua">
+            <ui:Label text="📐" class="toolbar-icon"/>
+        </ui:Button>
+
+        <!-- Separador -->
+        <ui:VisualElement class="toolbar-separator"/>
+
+        <!-- Botão Pincel -->
+        <ui:Button class="toolbar-button brush-btn" tooltip="Pincel">
+            <ui:Label text="🎨" class="toolbar-icon"/>
+        </ui:Button>
+
+        <!-- Botão Texto -->
+        <ui:Button class="toolbar-button text-btn" tooltip="Texto">
+            <ui:Label text="📝" class="toolbar-icon"/>
+        </ui:Button>
+
+        <!-- Separador -->
+        <ui:VisualElement class="toolbar-separator"/>
+
+        <!-- Botão Fog (Neblina) -->
+        <ui:Button class="toolbar-button fog-btn" tooltip="Fog of War">
+            <ui:Label text="🌫️" class="toolbar-icon"/>
+        </ui:Button>
+
+        <!-- Botão Efeitos -->
+        <ui:Button class="toolbar-button effects-btn" tooltip="Efeitos">
+            <ui:Label text="✨" class="toolbar-icon"/>
+        </ui:Button>
+
+    </ui:VisualElement>
+</ui:UXML>

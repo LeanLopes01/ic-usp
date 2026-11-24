@@ -1,0 +1,62 @@
+function doGet(e) { 
+  Logger.log(JSON.stringify(e));
+
+  var resultado = 'Ok';
+  if (!e.parameter || Object.keys(e.parameter).length === 0) {
+    return ContentService.createTextOutput('Nenhum parâmetro recebido.');
+  }
+
+  var planilhaID = '10vPOPcO-UknH51I6KdTUWLe8vRDYWmrKsm9hpy3QxjQ';  
+  var planilha = SpreadsheetApp.openById(planilhaID).getActiveSheet();
+  var newRow = planilha.getLastRow() + 1;
+  var linhaDados = [];
+  var totalLinhas = planilha.getLastRow();
+  var totalColunas = planilha.getLastColumn();
+  var totalCelulas = totalLinhas * totalColunas;
+
+  if (totalCelulas >= 1000000) {
+    // Cria nova planilha
+    var novaPlanilha = SpreadsheetApp.create("Backup Dados - " + new Date().toISOString());
+
+    // Copia os dados existentes
+    var dados = planilha.getDataRange().getValues();
+    novaPlanilha.getActiveSheet().getRange(1, 1, dados.length, dados[0].length).setValues(dados);
+
+    // Limpa dados da planilha original (mantém cabeçalhos se quiser)
+    planilha.clearContents();
+
+    // (Opcional) recria o cabeçalho se tiver
+    // planilha.getRange(1, 1, 1, dados[0].length).setValues([dados[0]]);
+  }
+
+  // Captura a data e hora atual
+  var dtaAtual = new Date();
+  linhaDados[0] = dtaAtual; // Coluna A - Data
+  linhaDados[1] = Utilities.formatDate(dtaAtual, 'America/Sao_Paulo', 'HH:mm:ss'); // Coluna B - Hora
+
+  // Processa os parâmetros recebidos
+  var parametrosAceitos = ['gas1', 'gas2', 'gas3', 'gas4', 'temperatura', 'umidade'];
+  var colunas = { 'gas1': 2, 'gas2': 3, 'gas3': 4, 'gas4': 5, 'temperatura': 6, 'umidade': 7 }; 
+
+  for (var param in e.parameter) {
+    if (parametrosAceitos.includes(param)) {
+      var valor = stripQuotes(e.parameter[param]);
+      linhaDados[colunas[param]] = valor;
+      resultado += `, ${param} inserido na coluna ${colunas[param]}`;
+    } else {
+      resultado = "Parâmetro não suportado: " + param;
+    }
+  }
+
+  Logger.log(JSON.stringify(linhaDados));
+
+  // Adiciona os dados à planilha
+  var newRange = planilha.getRange(newRow, 1, 1, linhaDados.length);
+  newRange.setValues([linhaDados]);
+
+  return ContentService.createTextOutput(resultado);
+}
+
+function stripQuotes(value) {
+  return value.replace(/^["']|['"]$/g, "");
+}

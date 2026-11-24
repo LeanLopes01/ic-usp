@@ -1,0 +1,27 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/UI/Tutorial/TutorialOverlayCSS.uss?fileID=7433441132597879392&amp;guid=0e4a6821fbdbc89489aa10baeced5ae3&amp;type=3#TutorialOverlayCSS"/>
+    <ui:VisualElement class="callout" style="height: 208px; width: 395px;">
+        <ui:VisualElement picking-mode="Ignore" class="callout-shadow callout-shadow--near" style="right: -16px;"/>
+        <ui:VisualElement picking-mode="Ignore" class="callout-arrow callout-arrow--up"/>
+        <ui:VisualElement class="callout-header">
+            <ui:VisualElement class="callout-badge">
+                <ui:Label text="?" class="callout-badge-glyph"/>
+            </ui:VisualElement>
+            <ui:Label text="Título" class="callout-title"/>
+        </ui:VisualElement>
+        <ui:Label text="Corpo" class="callout-body"/>
+        <ui:VisualElement class="callout-progress">
+            <ui:VisualElement class="progress-track">
+                <ui:VisualElement class="progress-fill"/>
+            </ui:VisualElement>
+            <ui:Label text="1/1" class="callout-counter"/>
+        </ui:VisualElement>
+        <ui:VisualElement class="callout-buttons">
+            <ui:Button text="Pular" class="callout-skip-btn"/>
+            <ui:VisualElement picking-mode="Ignore" class="callout-buttons-spacer"/>
+            <ui:Button text="Voltar" class="callout-back-btn"/>
+            <ui:Button text="Próximo" class="callout-next-btn"/>
+            <ui:Button text="Entendi" class="callout-got-it-btn"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

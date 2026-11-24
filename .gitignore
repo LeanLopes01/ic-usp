@@ -1,0 +1,12 @@
+﻿__pycache__/
+*.pyc
+*.log
+credenciais.json
+.env
+.env.*
+!.env.example
+.venv/
+dashboard/
+build/
+dist/
+Output/

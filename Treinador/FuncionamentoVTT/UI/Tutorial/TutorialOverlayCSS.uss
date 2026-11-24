@@ -1,0 +1,322 @@
+/* =============================================================================
+   TutorialOverlay.uss
+   Tema escuro "vidro" + destaque índigo. Para retematizar, mexa só no :root.
+   ============================================================================= */
+
+:root {
+    --tut-dim:          rgba(7, 9, 14, 0.78);
+    --tut-surface:      rgb(20, 23, 31);
+    --tut-surface-soft: rgba(255, 255, 255, 0.05);
+    --tut-border:       rgba(255, 255, 255, 0.10);
+    --tut-text:         rgb(240, 243, 249);
+    --tut-text-dim:     rgb(158, 167, 184);
+    --tut-accent:       rgb(112, 140, 255);
+    --tut-accent-hi:    rgb(150, 174, 255);
+    --tut-accent-lo:    rgb(84, 110, 226);
+    --tut-accent-ghost: rgba(112, 140, 255, 0.16);
+    --tut-radius:       16px;
+}
+
+/* ------------------------------------------------------------------ raiz -- */
+
+.tutorial-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 0.16s;
+    transition-timing-function: ease-out;
+}
+
+/* Adicione esta classe pelo C# para fazer fade-out antes de desabilitar. */
+.tutorial-overlay--hidden {
+    opacity: 0;
+}
+
+/* --------------------------------------------------------------- máscara -- */
+
+.dim-full,
+.dim-band {
+    position: absolute;
+    width: 0;
+    height: 0;
+    background-color: var(--tut-dim);
+    /* As faixas viajam junto com o destaque ao trocar de passo. */
+    transition-property: left, top, width, height;
+    transition-duration: 0.24s;
+    transition-timing-function: ease-out;
+}
+
+/* -------------------------------------------------------------- destaque -- */
+
+.highlight-border {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: 2px;
+    border-color: var(--tut-accent);
+    border-radius: 12px;
+    background-color: rgba(112, 140, 255, 0.05);
+    transition-property: left, top, width, height, scale;
+    transition-duration: 0.24s;
+    transition-timing-function: ease-out;
+}
+
+/* Anéis externos: fingem o glow que o UI Toolkit não tem. */
+.highlight-glow {
+    position: absolute;
+    border-width: 2px;
+}
+
+.highlight-glow--near {
+    left: -5px;
+    top: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 16px;
+    border-color: rgba(112, 140, 255, 0.28);
+}
+
+.highlight-glow--far {
+    left: -11px;
+    top: -11px;
+    right: -11px;
+    bottom: -11px;
+    border-radius: 22px;
+    border-color: rgba(112, 140, 255, 0.12);
+}
+
+/* Alterne esta classe num loop pelo C# para a pulsação (ver snippet). */
+.highlight-border--pulse {
+    scale: 1.025;
+}
+
+/* ------------------------------------------------------------- balãozinho -- */
+
+.callout {
+    position: absolute;
+    width: 360px;
+    max-width: 92%;
+    padding-top: 18px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: var(--tut-surface);
+    border-radius: var(--tut-radius);
+    border-width: 1px;
+    border-color: var(--tut-border);
+    transition-property: left, top, opacity, translate;
+    transition-duration: 0.24s;
+    transition-timing-function: ease-out;
+}
+
+/* Adicione e remova no frame seguinte para a entrada do card. */
+.callout--enter {
+    opacity: 0;
+    translate: 0 10px;
+}
+
+.callout-shadow {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.30);
+}
+
+.callout-shadow--near {
+    left: -4px;
+    top: -2px;
+    right: -4px;
+    bottom: -6px;
+    border-radius: 20px;
+}
+
+.callout-shadow--far {
+    left: -12px;
+    top: -4px;
+    right: -12px;
+    bottom: -16px;
+    border-radius: 28px;
+    background-color: rgba(0, 0, 0, 0.18);
+}
+
+.callout-arrow {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: var(--tut-surface);
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-color: var(--tut-border);
+    rotate: 45deg;
+}
+
+.callout-arrow--up    { top: -8px;    left: 32px;  rotate: 45deg;   }
+.callout-arrow--down  { bottom: -8px; left: 32px;  rotate: 225deg;  }
+.callout-arrow--left  { left: -8px;   top: 28px;   rotate: 315deg;  }
+.callout-arrow--right { right: -8px;  top: 28px;   rotate: 135deg;  }
+
+/* ------------------------------------------------------------------ texto -- */
+
+.callout-header {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.callout-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    background-color: var(--tut-accent-ghost);
+    border-width: 1px;
+    border-color: rgba(112, 140, 255, 0.35);
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.callout-badge-glyph {
+    font-size: 14px;
+    color: var(--tut-accent-hi);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.callout-title {
+    flex-shrink: 1;
+    font-size: 17px;
+    color: var(--tut-text);
+    -unity-font-style: bold;
+    letter-spacing: 0.2px;
+    white-space: normal;
+}
+
+.callout-body {
+    font-size: 13px;
+    color: var(--tut-text-dim);
+    white-space: normal;
+    margin-bottom: 16px;
+}
+
+/* --------------------------------------------------------------- progresso -- */
+
+.callout-progress {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.progress-track {
+    flex-grow: 1;
+    height: 3px;
+    border-radius: 2px;
+    background-color: var(--tut-surface-soft);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 2px;
+    background-color: var(--tut-accent);
+    transition-property: width;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.callout-counter {
+    font-size: 11px;
+    color: var(--tut-text-dim);
+    margin-left: 10px;
+    -unity-font-style: bold;
+    letter-spacing: 0.5px;
+}
+
+/* ----------------------------------------------------------------- botões -- */
+
+.callout-buttons {
+    flex-direction: row;
+    align-items: center;
+}
+
+.callout-buttons-spacer {
+    flex-grow: 1;
+}
+
+.callout-buttons Button {
+    height: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin: 0;
+    margin-left: 8px;
+    font-size: 13px;
+    border-radius: 9px;
+    border-width: 1px;
+    background-image: none;
+    -unity-font-style: bold;
+    transition-property: background-color, border-color, color, translate;
+    transition-duration: 0.12s;
+    transition-timing-function: ease-out;
+}
+
+.callout-buttons Button:hover {
+    translate: 0 -1px;
+}
+
+.callout-buttons Button:active {
+    translate: 0 1px;
+}
+
+/* Primário: Próximo / Entendi */
+.callout-next-btn,
+.callout-got-it-btn {
+    background-color: var(--tut-accent);
+    border-color: var(--tut-accent);
+    color: rgb(12, 14, 20);
+}
+
+.callout-next-btn:hover,
+.callout-got-it-btn:hover {
+    background-color: var(--tut-accent-hi);
+    border-color: var(--tut-accent-hi);
+}
+
+.callout-next-btn:active,
+.callout-got-it-btn:active {
+    background-color: var(--tut-accent-lo);
+    border-color: var(--tut-accent-lo);
+}
+
+/* Secundário: Voltar */
+.callout-back-btn {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: var(--tut-border);
+    color: var(--tut-text);
+}
+
+.callout-back-btn:hover {
+    background-color: var(--tut-surface-soft);
+    border-color: rgba(255, 255, 255, 0.20);
+}
+
+/* Terciário: Pular */
+.callout-skip-btn {
+    margin-left: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    color: var(--tut-text-dim);
+    -unity-font-style: normal;
+}
+
+.callout-skip-btn:hover {
+    color: var(--tut-text);
+}
+
+/* Foco de teclado/gamepad visível em qualquer botão. */
+.callout-buttons Button:focus {
+    border-color: var(--tut-accent-hi);
+}

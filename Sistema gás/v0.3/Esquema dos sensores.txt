@@ -1,0 +1,4 @@
+Gás 1 - MQ-5 - GLP (cozinha)
+Gás 2 - MQ-3 - Álcool 
+Gás 3 - MQ-7 - CO
+Gás 4 - MQ-135 - Gases poluentes / Qualidade do Ar

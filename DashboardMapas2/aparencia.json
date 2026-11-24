@@ -1,0 +1,131 @@
+{
+  "global": {
+    "titulo": null,
+    "titulo_tamanho": 15,
+    "eixo_x_nome": null,
+    "eixo_x_tamanho": 13,
+    "eixo_x_nome_tamanho": 13,
+    "eixo_y_nome": null,
+    "eixo_y_tamanho": 13,
+    "eixo_y_nome_tamanho": 13,
+    "eixo_y2_nome": null,
+    "eixo_y2_tamanho": 13,
+    "eixo_y2_nome_tamanho": 13,
+    "legenda_tamanho": 12,
+    "modo_x": "tempo",
+    "dia_inicial": 1,
+    "curvatura_padrao": 1.0,
+    "series": {}
+  },
+  "graficos": {
+    "iqa": {
+      "titulo": "IQAR",
+      "titulo_tamanho": 6,
+      "eixo_x_nome": "Time (days)",
+      "eixo_x_tamanho": 60,
+      "eixo_x_nome_tamanho": 60,
+      "eixo_y_nome": "I (IQAR Index)",
+      "eixo_y_tamanho": 60,
+      "eixo_y_nome_tamanho": 60,
+      "eixo_y2_nome": null,
+      "eixo_y2_tamanho": 60,
+      "eixo_y2_nome_tamanho": 60,
+      "legenda_tamanho": 6,
+      "modo_x": "dias",
+      "dia_inicial": 1,
+      "curvatura_padrao": 1.3,
+      "series": {
+        "iqa": {
+          "cor": "#c01c28",
+          "espessura": 10,
+          "curvatura": 1.3
+        }
+      }
+    },
+    "sensor-co2": {
+      "titulo": null,
+      "titulo_tamanho": 6,
+      "eixo_x_nome": null,
+      "eixo_x_tamanho": 60,
+      "eixo_x_nome_tamanho": 60,
+      "eixo_y_nome": null,
+      "eixo_y_tamanho": 60,
+      "eixo_y_nome_tamanho": 60,
+      "eixo_y2_nome": null,
+      "eixo_y2_tamanho": 60,
+      "eixo_y2_nome_tamanho": 60,
+      "legenda_tamanho": 6,
+      "modo_x": "dias",
+      "dia_inicial": 1,
+      "series": {
+        "co2": {
+          "cor": null,
+          "espessura": 10,
+          "curvatura": 1.3
+        }
+      }
+    },
+    "combo-clima": {
+      "titulo": null,
+      "titulo_tamanho": 6,
+      "eixo_x_nome": null,
+      "eixo_x_tamanho": 60,
+      "eixo_x_nome_tamanho": 60,
+      "eixo_y_nome": null,
+      "eixo_y_tamanho": 60,
+      "eixo_y_nome_tamanho": 60,
+      "eixo_y2_nome": null,
+      "eixo_y2_tamanho": 60,
+      "eixo_y2_nome_tamanho": 60,
+      "legenda_tamanho": 6,
+      "modo_x": "dias",
+      "dia_inicial": 1,
+      "series": {
+        "aht10_temp": {
+          "cor": null,
+          "espessura": 10,
+          "curvatura": 1.3
+        },
+        "aht10_hum": {
+          "cor": null,
+          "espessura": 10,
+          "curvatura": 1.3
+        }
+      }
+    },
+    "combo-pm": {
+      "titulo": null,
+      "titulo_tamanho": 6,
+      "eixo_x_nome": null,
+      "eixo_x_tamanho": 60,
+      "eixo_x_nome_tamanho": 60,
+      "eixo_y_nome": null,
+      "eixo_y_tamanho": 60,
+      "eixo_y_nome_tamanho": 60,
+      "eixo_y2_nome": null,
+      "eixo_y2_tamanho": 60,
+      "eixo_y2_nome_tamanho": 60,
+      "legenda_tamanho": 60,
+      "modo_x": "dias",
+      "dia_inicial": 1,
+      "curvatura_padrao": 1.3,
+      "series": {
+        "pm1_0": {
+          "cor": null,
+          "espessura": 10,
+          "curvatura": 1.3
+        },
+        "pm2_5": {
+          "cor": null,
+          "espessura": 10,
+          "curvatura": 1.3
+        },
+        "pm10_0": {
+          "cor": null,
+          "espessura": 10,
+          "curvatura": 1.3
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "dnd_race": {
+    "pasta": "racas",
+    "palavras_chave": ["raça", "raca", "raças", "racas", "linhagem"],
+    "max_palavras_chunk": 700,
+    "instrucoes": "Extraia dados de UMA raça (ou sub-raça) de RPG de fantasia. Preencha traços raciais em 'traits', capacidades em 'features', modificadores de atributo em 'ability_scores', proficiências em 'proficiencies' e sub-raças (se houver) em 'subraces'.",
+    "template": {
+      "race": {
+        "@id": "slug-em-ingles-do-nome",
+        "@source": "nome do livro/fonte, ou 'PDF' se desconhecido",
+        "name": "Nome da raça (no idioma original do PDF)",
+        "summary": "Resumo de 1-2 frases",
+        "metadata": {
+          "size": "Small | Medium | Large ...",
+          "speed": {"@unit": "ft", "#text": "30"},
+          "alignment": "...",
+          "age": "...",
+          "average-height": "...",
+          "average-weight": "...",
+          "origem": "livro/capítulo de origem"
+        },
+        "appearance": {"description": "..."},
+        "languages": {"language": ["Idioma 1", "Idioma 2"]},
+        "ability_scores": {"ability": [{"@name": "STR", "@mod": "1"}]},
+        "proficiencies": {"skill": [], "weapon": [], "tool": []},
+        "traits": {"trait": [{"@id": "slug-do-traco", "name": "Nome", "description": "Texto"}]},
+        "features": {"feature": [{"@id": "slug", "name": "Nome", "description": "Texto"}]},
+        "subraces": {
+          "subrace": [
+            {
+              "@id": "slug",
+              "name": "Nome da sub-raça",
+              "summary": "...",
+              "ability_scores": {"ability": [{"@name": "DEX", "@mod": "1"}]},
+              "features": {"feature": [{"@id": "slug", "name": "Nome", "description": "..."}]}
+            }
+          ]
+        }
+      }
+    }
+  },
+  "dnd_class": {
+    "pasta": "classes",
+    "palavras_chave": ["classe", "classes"],
+    "max_palavras_chunk": 550,
+    "instrucoes": "Extraia dados de UMA classe de personagem. Inclua dado de vida, atributos primários, resistências, proficiências, escolhas de equipamento inicial, características de classe ('features', com o nível em que são obtidas), progressão por nível ('level-progression', referenciando features por id em 'feature-ref') e subclasses ('subclasses'), quando presentes no texto. Se este trecho não cobrir certas seções (ex.: só fala dos níveis 1-5), preencha apenas o que estiver disponível — não invente níveis ou features que não apareçam no texto.",
+    "template": {
+      "class": {
+        "@id": "slug-em-ingles",
+        "@source": "fonte",
+        "name": "Nome da classe",
+        "summary": "Resumo",
+        "metadata": {
+          "hit-die": "d10",
+          "hp": {
+            "formula": [
+              {"@id": "1", "@when": "level==1", "#text": "hitDieMax+CON"},
+              {"@id": "2", "@when": "level!=1", "#text": "hitDieRollOrAverage+CON"}
+            ]
+          },
+          "primary-abilities": {"ability": ["STR"]},
+          "saving-throws": {"save": ["STR", "CON"]},
+          "armor-proficiencies": {"armor": []},
+          "weapon-proficiencies": {"weapon": []},
+          "skill-choices": {"@count": "2", "option": []}
+        },
+        "equipment": {
+          "choice": [
+            {"@text": "(a) ... ou (b) ...", "option": [{"@id": "slug", "#text": "descrição"}]}
+          ]
+        },
+        "features": {
+          "feature": [
+            {
+              "@id": "slug-feature",
+              "name": "Nome",
+              "level": "1",
+              "description": "Texto",
+              "usage": {"type": "ShortRest", "limit": "1"},
+              "effects": {"effect": [{"@type": "healing", "#text": "1d10 + Fighter Level"}]}
+            }
+          ]
+        },
+        "level-progression": {
+          "level": [
+            {"@number": "1", "proficiency-bonus": "+2", "features": {"feature-ref": [{"@id": "slug-feature"}]}}
+          ]
+        },
+        "subclasses": {
+          "subclass": [
+            {
+              "@id": "slug",
+              "name": "Nome da subclasse",
+              "summary": "...",
+              "level-gain": "3",
+              "features": {"feature": [{"@id": "slug", "name": "Nome", "level": "3", "description": "..."}]}
+            }
+          ]
+        },
+        "notes": "Observações adicionais, se houver"
+      }
+    }
+  },
+  "dnd_background": {
+    "pasta": "antecedentes",
+    "palavras_chave": ["antecedente", "antecedentes", "background"],
+    "max_palavras_chunk": 800,
+    "instrucoes": "Extraia dados de UM antecedente (background) de personagem.",
+    "template": {
+      "background": {
+        "@id": "slug",
+        "@source": "fonte",
+        "name": "Nome",
+        "summary": "Resumo",
+        "metadata": {
+          "skill-proficiencies": {"skill": []},
+          "tool-proficiencies": {"tool": []},
+          "languages": {"language": []},
+          "starting-wealth": "15 gp"
+        },
+        "equipment": {
+          "choice": [{"@text": "...", "option": [{"@id": "slug", "#text": "descrição"}]}],
+          "fixed": {"item": [{"#text": "Item"}, {"@id": "Ouro", "#text": "15"}]}
+        },
+        "feature": {"@id": "slug", "name": "Nome", "description": "Texto"},
+        "personality": {
+          "traits": {"option": []},
+          "ideals": {"option": []},
+          "bonds": {"option": []},
+          "flaws": {"option": []}
+        },
+        "notes": ""
+      }
+    }
+  },
+  "dnd_spell": {
+    "pasta": "magias",
+    "palavras_chave": ["magia", "magias", "feitiço", "feitiços", "conjuração"],
+    "max_palavras_chunk": 1000,
+    "instrucoes": "Extraia dados de UMA magia/feitiço.",
+    "template": {
+      "spell": {
+        "@id": "slug",
+        "@source": "fonte",
+        "name": "Nome",
+        "summary": "Resumo curto",
+        "metadata": {
+          "level": "3",
+          "school": "Evocação",
+          "casting-time": "1 action",
+          "range": "120",
+          "components": {
+            "component": [
+              {"@type": "verbal", "#text": "V"},
+              {"@type": "somatic", "#text": "S"},
+              {"@type": "material", "#text": "M (descrição do componente)"}
+            ]
+          },
+          "duration": "Instantaneous",
+          "classes": {"class": ["Wizard"]},
+          "area": "circulo | cone | linha | esfera | nenhum"
+        },
+        "description": "Texto completo do efeito",
+        "notes": {"note": []}
+      }
+    }
+  },
+  "dnd_item": {
+    "pasta": "itens",
+    "palavras_chave": ["item", "itens", "equipamento", "equipamentos", "arma", "armas", "armadura", "armaduras"],
+    "max_palavras_chunk": 1000,
+    "instrucoes": "Extraia dados de UM item/equipamento/arma/armadura. Preencha o bloco 'armor' apenas se o item for uma armadura ou escudo; caso contrário omita esse bloco.",
+    "template": {
+      "item": {
+        "@id": "slug",
+        "@source": "fonte",
+        "name": "Nome",
+        "summary": "Resumo curto",
+        "metadata": {
+          "category": "arma | armadura | ferramenta | item mágico | ...",
+          "subcategory": "...",
+          "weight": "55",
+          "cost": "75 gp",
+          "rarity": "Comum | Incomum | Raro | ..."
+        },
+        "armor": {
+          "armor-class": "16",
+          "armor-class-formula": "16",
+          "dex-bonus": "false",
+          "strength-requirement": "13",
+          "stealth-disadvantage": "true",
+          "armor-type": "Heavy"
+        },
+        "description": "Descrição completa"
+      }
+    }
+  },
+  "dnd_monster": {
+    "pasta": "monstros",
+    "palavras_chave": ["monstro", "monstros", "criatura", "criaturas", "besta", "bestiário", "bestiario"],
+    "max_palavras_chunk": 800,
+    "instrucoes": "Extraia o bloco de estatísticas completo de UM monstro/criatura.",
+    "template": {
+      "monster": {
+        "@id": "slug",
+        "name": "Nome",
+        "meta": "Linha-resumo: tamanho, tipo, alinhamento",
+        "categories": {"category": ["Aberração"]},
+        "stats": {"armor-class": "17 (armadura natural)", "hit-points": "135 (18d10 + 36)", "speed": "9 m, natação 12 m"},
+        "attributes": {"attribute": [{"@name": "STR", "#text": "21 (+5)"}]},
+        "details": {
+          "saving-throws": "...",
+          "skills": "...",
+          "senses": "...",
+          "languages": "...",
+          "challenge": "10 (5.900 XP)"
+        },
+        "traits": {"trait": [{"@id": "slug", "name": "Nome", "description": "..."}]},
+        "actions": {"action": [{"@id": "slug", "name": "Nome", "description": "..."}]},
+        "legendary-actions": {"action": [{"@id": "slug", "name": "Nome", "description": "..."}]}
+      }
+    }
+  },
+  "dnd_feat": {
+    "pasta": "talentos",
+    "palavras_chave": ["talento", "talentos", "feat", "feats"],
+    "max_palavras_chunk": 1000,
+    "instrucoes": "Extraia dados de UM talento (feat).",
+    "template": {
+      "feat": {
+        "@id": "slug",
+        "@source": "fonte",
+        "name": "Nome",
+        "prerequisite": "Nenhuma | Pré-requisito",
+        "summary": "Resumo",
+        "metadata": {
+          "category": "Origin | General | ...",
+          "level-requirement": "1",
+          "affected-attributes": {"attribute": []},
+          "affected-skills": {"skill": []},
+          "modifiers": {"modifier": [{"@type": "proficiency", "@target": "initiative", "@value": "1"}]}
+        },
+        "description": "Texto completo",
+        "benefits": {"benefit": [{"@type": "misc", "#text": "Texto do benefício"}]}
+      }
+    }
+  }
+}
